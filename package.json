@@ -1,0 +1,58 @@
+{
+  "name": "sate.js",
+  "version": "1.0.0",
+  "description": "🍢 Skewer web data perfectly - Smart Indonesian web crawler library",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node tests/basic.test.js",
+    "example": "node examples/basic-usage.js",
+    "start": "node examples/basic-usage.js"
+  },
+  "keywords": [
+    "web-crawler",
+    "scraper",
+    "sate",
+    "indonesia",
+    "smart-crawler",
+    "data-extraction",
+    "ai-powered",
+    "web-scraping",
+    "cheerio",
+    "nodejs"
+  ],
+  "author": {
+    "name": "Cloud Dark",
+    "email": "clouddark1798@gmail.com",
+    "url": "https://github.com/Cloud-Dark"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/Cloud-Dark/sate.js#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cloud-Dark/sate.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Cloud-Dark/sate.js/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "iconv-lite": "^0.6.3",
+    "robots-parser": "^3.0.1",
+    "url-parse": "^1.5.10",
+    "mime-types": "^2.1.35",
+    "node-cache": "^5.1.2"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  },
+  "files": [
+    "src/",
+    "examples/",
+    "README.md",
+    "LICENSE"
+  ]
+}

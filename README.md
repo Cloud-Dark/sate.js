@@ -15,20 +15,18 @@ Sate.js adalah library web crawler yang powerful, cepat, dan mudah digunakan, di
 - 🚀 **Super Cepat** - Tanpa Chromium, pure Node.js
 - 🤖 **AI-Powered** - Sentiment analysis, keyword extraction, language detection
 - 🇮🇩 **Made in Indonesia** - Dokumentasi bahasa Indonesia & English
-- 🔧 **Feature Rich** - 25+ fitur canggih untuk web crawling
+- 🔧 **Feature Rich** - 35+ fitur canggih untuk web crawling
 - 📊 **Smart Analytics** - Quality scoring & performance monitoring
 - 🌍 **Universal** - Mendukung semua jenis website
 - 💡 **Easy to Use** - API yang intuitif dan dokumentasi lengkap
 
-## 🚀 Quick Start
-
-### Installation
+## 📦 Installation
 
 ```bash
 npm install sate.js
 ```
 
-### Basic Usage
+## 🚀 Quick Start
 
 ```javascript
 const SateJS = require('sate.js');
@@ -59,7 +57,7 @@ runBasicExample();
 
 ## 🍢 Core Features
 
-Sate.js menawarkan lebih dari 25 fitur canggih untuk kebutuhan web crawling dan analisis data Anda:
+Sate.js menawarkan lebih dari 35 fitur canggih untuk kebutuhan web crawling dan analisis data Anda:
 
 ### Data Extraction & Parsing
 1.  **`tusuk(url, options)`**: Metode utama untuk mengekstrak semua data dari URL.
@@ -69,81 +67,48 @@ Sate.js menawarkan lebih dari 25 fitur canggih untuk kebutuhan web crawling dan 
 5.  **Text Extraction**: Mengekstrak teks lengkap, judul (H1-H6), jumlah kata, dan paragraf.
 6.  **Schema Extraction**: Mendeteksi dan mengekstrak data terstruktur (JSON-LD).
 7.  **Form Extraction**: Mengidentifikasi formulir HTML dan bidang inputnya.
-8.  **Contact Info Extraction**: Mengekstrak alamat email, nomor telepon, dan tautan media sosial.
-9.  **Price Extraction**: Mendeteksi dan mengekstrak informasi harga dari halaman.
-10. **Date Extraction**: Mengidentifikasi dan mengekstrak tanggal dari konten.
-11. **Breadcrumbs Extraction**: Mengekstrak struktur breadcrumb navigasi.
-12. **Reviews Extraction**: Mengidentifikasi dan mengekstrak ulasan atau testimoni.
+8.  **Table Data Extraction**: Mengekstrak data dari tabel HTML menjadi format terstruktur.
+9.  **Contact Info Extraction**: Mengekstrak alamat email, nomor telepon, dan tautan media sosial.
+10. **Price Extraction**: Mendeteksi dan mengekstrak informasi harga dari halaman.
+11. **Date Extraction**: Mengidentifikasi dan mengekstrak tanggal dari konten.
+12. **Breadcrumbs Extraction**: Mengekstrak struktur breadcrumb navigasi.
+13. **Reviews Extraction**: Mengidentifikasi dan mengekstrak ulasan atau testimoni.
 
 ### AI-Powered Analysis
-13. **Sentiment Analysis**: Menganalisis sentimen (positif, negatif, netral) dari teks.
-14. **Keyword Extraction**: Mengekstrak kata kunci paling relevan dari konten.
-15. **Language Detection**: Mendeteksi bahasa utama konten.
-16. **Readability Analysis**: Menganalisis tingkat keterbacaan teks (Flesch Reading Ease Score).
+14. **Sentiment Analysis**: Menganalisis sentimen (positif, negatif, netral) dari teks.
+15. **Keyword Extraction**: Mengekstrak kata kunci paling relevan dari konten.
+16. **Language Detection**: Mendeteksi bahasa utama konten.
+17. **Readability Analysis**: Menganalisis tingkat keterbacaan teks (Flesch Reading Ease Score).
 
 ### Advanced Crawling & Monitoring
-17. **`tusukMassal(urls, options)`**: Memproses banyak URL secara bersamaan dengan kontrol konkurensi dan penundaan.
-18. **`pantauPerubahan(url, interval, callback)`**: Memantau perubahan konten pada URL tertentu secara berkala.
-19. **`jelajahiSitus(seedUrl, options)`**: Menjelajahi struktur situs dari URL awal hingga kedalaman tertentu.
-20. **`buatPetaSitus(baseUrl, options)`**: Membuat peta situs (sitemap) dalam format XML dari hasil penjelajahan.
+18. **`tusukMassal(urls, options)`**: Memproses banyak URL secara bersamaan dengan kontrol konkurensi dan penundaan.
+19. **`pantauPerubahan(url, interval, callback)`**: Memantau perubahan konten pada URL tertentu secara berkala.
+20. **`jelajahiSitus(seedUrl, options)`**: Menjelajahi struktur situs dari URL awal hingga kedalaman tertentu.
+21. **`buatPetaSitus(baseUrl, options)`**: Membuat peta situs (sitemap) dalam format XML dari hasil penjelajahan.
+22. **`periksaTautanRusak(url, options)`**: Memeriksa semua tautan di halaman dan melaporkan yang rusak.
 
 ### Analytics & Insights
-21. **`analisisWarung(urls, options)`**: Melakukan analisis kompetitor dengan membandingkan kualitas, kata kunci, dan sentimen.
-22. **`deteksiTeknologi(url)`**: Mendeteksi teknologi yang digunakan oleh sebuah situs web (CMS, framework, analytics, CDN, dll.).
-23. **`bandingkanHalaman(urls, metrics)`**: Membandingkan beberapa halaman berdasarkan metrik kualitas, performa, dan SEO.
-24. **Quality Scoring**: Memberikan skor kualitas keseluruhan dan perincian untuk SEO, aksesibilitas, performa, konten, dan teknis.
-25. **Performance Monitoring**: Melacak statistik performa crawling seperti waktu respons rata-rata, tingkat keberhasilan, dan permintaan tercepat/terlambat.
-26. **Duplicate Content Detection**: Mengidentifikasi konten yang duplikat atau hampir duplikat.
-27. **URL Pattern Analysis**: Mengkategorikan URL berdasarkan pola (gambar, dokumen, video, e-commerce, blog, dll.).
+23. **`analisisWarung(urls, options)`**: Melakukan analisis kompetitor dengan membandingkan kualitas, kata kunci, dan sentimen.
+24. **`deteksiTeknologi(url)`**: Mendeteksi teknologi yang digunakan oleh sebuah situs web (CMS, framework, analytics, CDN, dll.).
+25. **`bandingkanHalaman(urls, metrics)`**: Membandingkan beberapa halaman berdasarkan metrik kualitas, performa, dan SEO.
+26. **Quality Scoring**: Memberikan skor kualitas keseluruhan dan perincian untuk SEO, aksesibilitas, performa, konten, dan teknis.
+27. **Performance Monitoring**: Melacak statistik performa crawling seperti waktu respons rata-rata, tingkat keberhasilan, dan permintaan tercepat/terlambat.
+28. **Duplicate Content Detection**: Mengidentifikasi konten yang duplikat atau hampir duplikat.
+29. **URL Pattern Analysis**: Mengkategorikan URL berdasarkan pola (gambar, dokumen, video, e-commerce, blog, dll.).
 
 ### Utility & Quick Access
-28. **`ambilJudul(url)`**: Mengambil judul halaman dengan cepat.
-29. **`ambilMetadata(url)`**: Mengambil metadata halaman dengan cepat.
-30. **`ambilLink(url)`**: Mengambil semua tautan dari halaman dengan cepat.
-31. **`ambilTeks(url, options)`**: Mengambil teks lengkap dari halaman dengan cepat.
-32. **`ambilInsight(url)`**: Memberikan ringkasan insight penting dari sebuah URL.
-33. **`getStatistikPerforma()`**: Mendapatkan statistik performa crawling saat ini.
-34. **`resetStatistikPerforma()`**: Mereset statistik performa.
-35. **`eksporData(format)`**: Mengekspor data yang dikumpulkan dalam format JSON, CSV, atau XML.
+30. **`ambilJudul(url)`**: Mengambil judul halaman dengan cepat.
+31. **`ambilMetadata(url)`**: Mengambil metadata halaman dengan cepat.
+32. **`ambilLink(url)`**: Mengambil semua tautan dari halaman dengan cepat.
+33. **`ambilTeks(url, options)`**: Mengambil teks lengkap dari halaman dengan cepat.
+34. **`ambilInsight(url)`**: Memberikan ringkasan insight penting dari sebuah URL.
+35. **`getStatistikPerforma()`**: Mendapatkan statistik performa crawling saat ini.
+36. **`resetStatistikPerforma()`**: Mereset statistik performa.
+37. **`eksporData(format)`**: Mengekspor data yang dikumpulkan dalam format JSON, CSV, atau XML.
 
-## 🚀 Quick Start
+## 📚 More Examples
 
-### Installation
-
-```bash
-npm install sate.js
-```
-
-### Basic Usage
-
-```javascript
-const SateJS = require('sate.js');
-
-// Inisialisasi sate 🍢
-const sate = new SateJS({
-  userAgent: 'Sate.js Bot 🍢',
-  timeout: 30000,
-  delay: 1000
-});
-
-// Tusuk data dari website
-async function runBasicExample() {
-  try {
-    const hasil = await sate.tusuk('https://example.com');
-
-    console.log('Quality Score:', hasil.quality.overall);
-    console.log('Sentiment:', hasil.sentiment.sentiment);
-    console.log('Keywords:', hasil.keywords.slice(0, 5));
-    console.log('Language:', hasil.language.fullName);
-  } catch (error) {
-    console.error('Error during basic usage:', error.message);
-  }
-}
-
-runBasicExample();
-```
-
-### 2. Mass Data Processing
+### 1. Mass Data Processing
 
 ```javascript
 // Tusuk banyak URL sekaligus
@@ -168,7 +133,7 @@ massResults.forEach((result, index) => {
 });
 ```
 
-### 3. Competitor Analysis
+### 2. Competitor Analysis
 
 ```javascript
 // Analisis kompetitor
@@ -180,3 +145,16 @@ const competitors = await sate.analisisWarung([
 console.log('Average Quality:', competitors.analisis.kualitasRataRata);
 console.log('Popular Keywords:', competitors.analisis.katakunciPopuler.slice(0, 3));
 console.log('Duplicate Content Detected:', competitors.analisis.kontenDuplikat.length);
+```
+
+### 3. Broken Link Check
+
+```javascript
+// Periksa tautan rusak di sebuah halaman
+const brokenLinksResult = await sate.periksaTautanRusak('https://example.com');
+
+console.log('Total Links Checked:', brokenLinksResult.totalLinksChecked);
+console.log('Broken Links Found:', brokenLinksResult.brokenLinks.length);
+if (brokenLinksResult.brokenLinks.length > 0) {
+  console.log('First Broken Link:', brokenLinksResult.brokenLinks[0]);
+}

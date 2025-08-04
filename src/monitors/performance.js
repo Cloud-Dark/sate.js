@@ -1,3 +1,5 @@
+const URL = require('url-parse'); // Add this line
+
 class PerformanceMonitor {
   constructor() {
     this.metrics = {

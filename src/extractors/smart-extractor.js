@@ -175,6 +175,57 @@ class SmartContentExtractor {
     }
     return null;
   }
+
+  static extractTables($) {
+    const tables = [];
+    
+    $('table').each((i, tableElem) => {
+      const $table = $(tableElem);
+      const headers = [];
+      const rows = [];
+
+      // Extract headers (th elements)
+      $table.find('thead th').each((j, thElem) => {
+        headers.push($(thElem).text().trim());
+      });
+
+      // If no explicit thead, try to get from first tr's th or td
+      if (headers.length === 0) {
+        $table.find('tr').first().find('th, td').each((j, cellElem) => {
+          headers.push($(cellElem).text().trim());
+        });
+      }
+
+      // Extract rows (tr elements)
+      $table.find('tbody tr, tr:not(:has(th))').each((j, trElem) => {
+        const rowData = [];
+        $(trElem).find('td').each((k, tdElem) => {
+          rowData.push($(tdElem).text().trim());
+        });
+        if (rowData.length > 0) {
+          // If headers exist, try to map data to headers
+          if (headers.length > 0 && rowData.length === headers.length) {
+            const rowObject = {};
+            headers.forEach((header, index) => {
+              rowObject[header] = rowData[index];
+            });
+            rows.push(rowObject);
+          } else {
+            rows.push(rowData); // Fallback to array if headers don't match or don't exist
+          }
+        }
+      });
+
+      tables.push({
+        id: $table.attr('id') || null,
+        class: $table.attr('class') || null,
+        headers: headers.length > 0 ? headers : null,
+        rows: rows
+      });
+    });
+
+    return tables;
+  }
 }
 
 module.exports = SmartContentExtractor;

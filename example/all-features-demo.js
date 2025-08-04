@@ -29,6 +29,10 @@ async function demonstrateAllFeatures() {
     console.log('✅ Text Word Count:', result.text.wordCount);
     console.log('✅ Schema Found:', result.schema.length > 0);
     console.log('✅ Forms Found:', result.forms.length);
+    console.log('✅ Tables Found:', result.tables.length > 0 ? 'Yes' : 'No'); // New: Tables
+    if (result.tables.length > 0) {
+      console.log('   - Sample Table (first row):', JSON.stringify(result.tables[0].rows[0]) || 'N/A');
+    }
     console.log('✅ Sentiment:', result.sentiment.sentiment);
     console.log('✅ Keywords (Top 3):', result.keywords.slice(0, 3).map(k => k.word).join(', '));
     console.log('✅ Language:', result.language.fullName);
@@ -140,6 +144,27 @@ async function demonstrateAllFeatures() {
 
     sate.resetStatistikPerforma();
     console.log('✅ Performance Stats Reset. New Requests:', sate.getStatistikPerforma().requests);
+
+    console.log('\n' + '='.repeat(50));
+    console.log('🍢 11. Periksa Tautan Rusak (Broken Link Checker)'); // New section
+    console.log('='.repeat(50));
+    const brokenLinksResult = await sate.periksaTautanRusak(targetUrl);
+    console.log('✅ Total Links Checked:', brokenLinksResult.totalLinksChecked);
+    console.log('✅ Broken Links Found:', brokenLinksResult.brokenLinks.length);
+    if (brokenLinksResult.brokenLinks.length > 0) {
+      console.log('   - Sample Broken Link:', brokenLinksResult.brokenLinks[0].brokenLink);
+      console.log('   - Status Code:', brokenLinksResult.brokenLinks[0].statusCode);
+    } else {
+      console.log('   - No broken links found on example.com (expected for a simple site).');
+      // Try a URL that might have broken links or a 404
+      try {
+        const brokenLinkTestUrl = 'https://httpbin.org/status/404'; // A known 404
+        const singleLinkCheck = await sate.periksaTautanRusak(brokenLinkTestUrl);
+        console.log('   - Testing a known 404:', singleLinkCheck.brokenLinks.length > 0 ? 'Detected' : 'Not Detected');
+      } catch (e) {
+        console.log('   - Could not test known 404:', e.message);
+      }
+    }
 
     console.log('\n' + '='.repeat(50));
     console.log('🍢 All Sate.js Features Demo Completed Successfully!');

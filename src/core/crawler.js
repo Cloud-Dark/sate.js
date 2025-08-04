@@ -94,6 +94,41 @@ class WebCrawler {
    }
  }
 
+  async checkLinkStatus(url, config) {
+    try {
+      const headers = generateHeaders(config.userAgent, url);
+      const axiosConfig = {
+        url,
+        method: 'HEAD', // Use HEAD request for efficiency
+        timeout: config.timeout,
+        maxRedirects: config.maxRedirects,
+        headers,
+        validateStatus: (status) => status >= 200 && status < 500 // Accept 2xx, 3xx, 4xx
+      };
+
+      if (config.proxy) {
+        axiosConfig.proxy = config.proxy;
+      }
+
+      const response = await axios(axiosConfig);
+      return {
+        url,
+        statusCode: response.status,
+        statusText: response.statusText,
+        contentType: response.headers['content-type'] || '',
+        size: response.headers['content-length'] ? parseInt(response.headers['content-length'], 10) : 0
+      };
+    } catch (error) {
+      // If request fails (e.g., network error, DNS error), treat as broken
+      return {
+        url,
+        statusCode: error.response ? error.response.status : 0, // 0 for network errors
+        statusText: error.message,
+        error: true
+      };
+    }
+  }
+
  async processResponse(response, url, config) {
    const contentType = response.headers['content-type'] || '';
    const statusCode = response.status;

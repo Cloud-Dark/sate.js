@@ -41,6 +41,7 @@ class SateJS extends WebCrawler {
         text: ContentParser.extractText($, options.textOptions),
         schema: ContentParser.extractSchema($),
         forms: ContentParser.extractForms($),
+        tables: SmartContentExtractor.extractTables($), // New: Table data
         
         // AI-powered analysis
         sentiment: AIContentAnalyzer.analyzeSentiment(result.$('body').text()),
@@ -357,6 +358,67 @@ class SateJS extends WebCrawler {
       poweredBy: this.brand,
       timestamp: new Date().toISOString()
     };
+  }
+
+  /**
+   * 🍢 Periksa Tautan Rusak (Broken Link Checker)
+   */
+  async periksaTautanRusak(url, options = {}) {
+    console.log(`🍢 Memeriksa tautan rusak di ${url}...`);
+    const config = { ...this.options, ...options };
+
+    try {
+      const pageResult = await this.tusuk(url, { cache: false });
+      const allLinks = pageResult.links;
+      const brokenLinks = [];
+
+      console.log(`Ditemukan ${allLinks.length} tautan. Memulai pemeriksaan...`);
+
+      const concurrentChecks = config.concurrent || 5; // Default 5 concurrent checks
+      for (let i = 0; i < allLinks.length; i += concurrentChecks) {
+        const batch = allLinks.slice(i, i + concurrentChecks);
+        const batchPromises = batch.map(async (link) => {
+          try {
+            const statusResult = await this.checkLinkStatus(link.url, config);
+            if (statusResult.statusCode >= 400 || statusResult.error) {
+              brokenLinks.push({
+                sourceUrl: url,
+                brokenLink: link.url,
+                statusCode: statusResult.statusCode,
+                statusText: statusResult.statusText,
+                linkText: link.text,
+                error: statusResult.error || false
+              });
+            }
+          } catch (checkError) {
+            brokenLinks.push({
+              sourceUrl: url,
+              brokenLink: link.url,
+              statusCode: 0, // Indicate network/request error
+              statusText: checkError.message,
+              linkText: link.text,
+              error: true
+            });
+          }
+        });
+        await Promise.all(batchPromises);
+        if (config.delay > 0) {
+          await this.sleep(config.delay);
+        }
+      }
+
+      console.log(`🍢 Pemeriksaan tautan rusak selesai. Ditemukan ${brokenLinks.length} tautan rusak.`);
+      return {
+        url,
+        totalLinksChecked: allLinks.length,
+        brokenLinks,
+        poweredBy: this.brand,
+        timestamp: new Date().toISOString()
+      };
+
+    } catch (error) {
+      throw new Error(`Gagal memeriksa tautan rusak untuk ${url}: ${error.message}`);
+    }
   }
 
   // Quick methods dengan nama Indonesia

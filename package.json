@@ -1,6 +1,6 @@
 {
   "name": "sate.js",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "🍢 Skewer web data perfectly - Smart Indonesian web crawler library",
   "main": "src/index.js",
   "scripts": {
